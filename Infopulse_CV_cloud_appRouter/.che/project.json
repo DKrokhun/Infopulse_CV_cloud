@@ -1,0 +1,1 @@
+{"type":"approuter.nodejs","builders":{"default":"sap.nodejs","configs":{}},"runners":{"configs":{}},"attributes":{},"description":"Infopulse_CV_cloud_appRouter","mixinTypes":["mtamodule"]}

@@ -1,0 +1,65 @@
+ID: Infopulse_CV_cloud
+_schema-version: '2.1'
+description: Infopulse CV in cloud
+parameters:
+  deploy_mode: html5-repo
+version: 0.0.1
+modules:
+  - name: Infopulse_CV_cloud_appRouter
+    type: approuter.nodejs
+    path: Infopulse_CV_cloud_appRouter
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: Infopulse_CV_cloud_html5_repo_runtime
+      - name: InfopulseCV_Service
+      - name: uaa_Infopulse_CV_cloud
+  - name: Infopulse_CV_cloud_ui_deployer
+    type: com.sap.html5.application-content
+    path: Infopulse_CV_cloud_ui_deployer
+    requires:
+      - name: Infopulse_CV_cloud_html5_repo_host
+    build-parameters:
+      requires:
+        - name: InfopulseCV
+          artifacts:
+            - './*'
+          target-path: resources/InfopulseCV
+  - name: InfopulseCV
+    type: html5
+    path: InfopulseCV
+    build-parameters:
+      builder: grunt
+      supported-platforms: []
+      build-result: dist
+resources:
+  - name: Infopulse_CV_cloud_html5_repo_runtime
+    parameters:
+      service-plan: app-runtime
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service
+  - name: Infopulse_CV_cloud_html5_repo_host
+    parameters:
+      service-plan: app-host
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service
+  - name: InfopulseCV_Service
+    parameters:
+      service-name: abap
+      protocol:
+        - ODataV2
+      service: abap-trial
+      service-plan: shared
+    type: org.cloudfoundry.existing-service
+  - name: uaa_Infopulse_CV_cloud
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_Infopulse_CV_cloud
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service
