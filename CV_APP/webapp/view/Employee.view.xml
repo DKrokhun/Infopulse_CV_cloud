@@ -1,0 +1,133 @@
+<mvc:View controllerName="infopulse.cv.infopulse-cvapp-ui.controller.Employee" xmlns="sap.uxap" xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout" xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified">
+	<ObjectPageLayout showTitleInHeaderContent="true" showFooter="true" busy="{Default>/busy}">
+		<headerTitle>
+			<ObjectPageHeader objectImageURI="sap-icon://employee" objectImageShape="Circle" objectTitle="{name}" objectImageAlt="{name}"
+				objectSubtitle="{position}" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false"/>
+		</headerTitle>
+		<headerContent>
+			<layout:VerticalLayout>
+				<m:Link text="{email}"/>
+			</layout:VerticalLayout>
+			<layout:VerticalLayout>
+				<m:ObjectStatus title="{i18n>manageResumes.employeeTable.status.col}" text="{ path:'cvstatus', formatter: '.formatter.tooltip' }"/>
+				<m:ObjectStatus title="{i18n>manageResumes.employeeTable.employeeLastUploadDate.col}"
+					text="{ path:'UPDATED', type:'sap.ui.model.type.Date', formatOptions: { style: 'short'} }"/>
+				<m:ObjectStatus title="{i18n>manageResumes.employeeTable.employeeRequestDate.col}"
+					text="{ path:'request', type:'sap.ui.model.type.Date', formatOptions: { style: 'short'} }"/>
+			</layout:VerticalLayout>
+		</headerContent>
+		<sections>
+			<ObjectPageSection title="{i18n>manageResumes.employeePage.objectSelectionTitle}">
+				<subSections>
+					<ObjectPageSubSection>
+						<m:List items="{ path: '/FilesList/' , sorter: { path: 'updated', group : true, descending: true } }">
+							<m:headerToolbar>
+								<m:Toolbar>
+									<m:Title text="{i18n>manageResumes.employeePage.resumeTableTitle}"/>
+									<m:ToolbarSpacer/>
+									<u:FileUploader id="fileUploaderPDF" fileType="doc,pdf,docx,ppt,pptx,txt" tooltip="Choose file..." uploadComplete="onUploadPDFComplete"
+										uploadUrl="" style="Emphasized" placeholder="{i18n>manageResumes.employeePage.fileUploader}" sendXHR="true" sameFilenameAllowed="true"
+										multiple="true"/>
+									<m:Button id="uploadPdfButton" text="{i18n>manageResumes.employeePage.upload.btn}" tooltip="Load" press="handleUploadPDFPress"
+										type="Transparent"/>
+									<m:Button icon="sap-icon://action-settings" tooltip="{i18n>manageResumes.employeeTable.toolBar.settings}"/>
+								</m:Toolbar>
+							</m:headerToolbar>
+							<m:CustomListItem>
+								<m:HBox>
+									<core:Icon press="handlePress" size="2rem"
+										src="{= ${cvftype}==='application/pdf' ? 'sap-icon://pdf-attachment':'sap-icon://doc-attachment'}"
+										class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+									<m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+										<m:Link text="{cvname}" press="handlePress"/>
+										<m:Label text="{path:'updated', formatter: '.formatter.time'}"/>
+									</m:VBox>
+								</m:HBox>
+							</m:CustomListItem>
+						</m:List>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+		<footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button width="auto" visible="{= ${cvstatus}==='NeedToUpdate' || ${cvstatus}==='Complete'}"
+					text="{i18n>manageResumes.employeeTable.actionButton.sendEmail}"/>
+				<m:Button width="auto" visible="{= ${cvstatus}==='InProgress'}" text="{i18n>manageResumes.employeeTable.actionButton.repeatNotice}"/>
+				<m:Button width="auto" type="Accept" visible="{= ${cvstatus}==='ForApproval' }"
+					text="{i18n>manageResumes.employeeTable.actionButton.accept}"/>
+				<m:Button width="auto" type="Reject" visible="{= ${cvstatus}==='ForApproval' }"
+					text="{i18n>manageResumes.employeeTable.actionButton.reject}"/>
+			</m:OverflowToolbar>
+		</footer>
+	</ObjectPageLayout>
+</mvc:View>
+<!--<mvc:View -->
+<!--	controllerName="infopulse.cv.infopulse-cvapp-ui.controller.Employee"-->
+<!--	xmlns:m="sap.m" -->
+<!--	xmlns:mvc="sap.ui.core.mvc" -->
+<!--	xmlns="sap.uxap"-->
+<!--	xmlns:layout="sap.ui.layout" -->
+<!--	xmlns:u="sap.ui.unified" -->
+<!--	xmlns:core="sap.ui.core">-->
+<!--	<ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" showEditHeaderButton="false" showFooter="true">-->
+<!--		<headerTitle>-->
+<!--			<ObjectPageHeader id="name" objectImageURI="https://image.flaticon.com/icons/png/128/123/123417.png" objectTitle="{name}" objectImageAlt="{name}"-->
+<!--				objectSubtitle="{position}" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false"></ObjectPageHeader>-->
+<!--		</headerTitle>-->
+<!--		<headerContent>-->
+<!--			<layout:VerticalLayout>-->
+<!--				<m:Link text="{email}"/>-->
+<!--			</layout:VerticalLayout>-->
+<!--			<layout:VerticalLayout>-->
+<!--				<m:Label text="Status: {path:'cvstatus',formatter: '.formatter.tooltip' }"/>-->
+<!--				<m:Label text="Date of last update: {path:'updated', type:'sap.ui.model.type.Date', formatOptions: { style: 'short'}}"/>-->
+<!--				<m:Label text="Date of last request for update: {path:'request', type:'sap.ui.model.type.Date', formatOptions: { style: 'short'}}"/>-->
+<!--			</layout:VerticalLayout>-->
+<!--		</headerContent>-->
+<!--		<sections>-->
+<!--			<ObjectPageSection id="goalsSection" title="Files">-->
+<!--				<subSections>-->
+<!--					<ObjectPageSubSection id="goalsSectionSS1">-->
+<!--						<m:List items="{path: 'FilesList/' , sorter: { path: 'updated', group : true,descending: true }}" id="List"-->
+<!--							updateFinished="onUpdateFinished">-->
+<!--							<m:headerToolbar>-->
+<!--								<m:Toolbar>-->
+<!--									<m:Title id="tableHeader" text="CV"/>-->
+<!--									<m:ToolbarSpacer/>-->
+<!--									<u:FileUploader id="fileUploaderPDF" fileType="doc,pdf,docx,ppt,pptx" tooltip="Choose file..." uploadComplete="onUploadPDFComplete" uploadUrl=""-->
+<!--										typeMissmatch="onTypeMissmatchPDF" change="handleFileUploaderChangePDF" style="Emphasized" placeholder="Choose file..." sendXHR="true"-->
+<!--										sameFilenameAllowed="true" multiple="true"></u:FileUploader>-->
+<!--									<m:Button id="uploadPdfButton" text="Upload" tooltip="Load" press="handleUploadPDFPress" type="Transparent"/>-->
+<!--									<m:Button icon="sap-icon://action-settings" tooltip="Settings" press="onOpenViewSettings"/>-->
+<!--								</m:Toolbar>-->
+<!--							</m:headerToolbar>-->
+<!--							<m:CustomListItem>-->
+<!--								<m:HBox>-->
+<!--									<core:Icon press="handlePress" size="2rem"-->
+<!--										src="{= ${cvftype}==='application/pdf' ? 'sap-icon://pdf-attachment':'sap-icon://doc-attachment'}"-->
+<!--										class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>-->
+<!--									<m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">-->
+<!--										<m:Link text="{CVname}" press="handlePress"/>-->
+<!--										<m:Label text="{path:'updated', formatter: '.formatter.time'}"/>-->
+<!--									</m:VBox>-->
+<!--								</m:HBox>-->
+<!--							</m:CustomListItem>-->
+<!--						</m:List>-->
+<!--					</ObjectPageSubSection>-->
+<!--				</subSections>-->
+<!--			</ObjectPageSection>-->
+<!--		</sections>-->
+<!--		<footer>-->
+<!--			<m:OverflowToolbar>-->
+<!--				<m:ToolbarSpacer />-->
+<!--				<m:Button  width="auto" enabled="{= ${cvstatus}==='NeedToUpdate' || ${cvstatus}==='Complete'}" visible="{= ${cvstatus}==='NeedToUpdate' || ${cvstatus}==='Complete'}" text="Send E-mail" tooltip="Send email"  press="onClik"/>-->
+<!--                <m:Button  width="auto" enabled="{= ${cvstatus}==='InProgress' ? true : false}" visible="{= ${cvstatus}==='InProgress'}" text="Resend E-mail"  tooltip="Resend email"   press="reSend"/>-->
+<!--				<m:Button type="Accept" visible="{= ${cvstatus}==='ForApproval' }" text="Accept" press="confirm"/>-->
+<!--				<m:Button type="Reject" visible="{= ${cvstatus}==='ForApproval' }" text="Reject " press="reject"/>-->
+<!--			</m:OverflowToolbar>-->
+<!--		</footer>-->
+<!--	</ObjectPageLayout>-->
+<!--</mvc:View>-->
