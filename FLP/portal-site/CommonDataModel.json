@@ -1,7 +1,7 @@
 {
 	"_version": "3.0.0",
 	"identification": {
-		"id": "4caf9a80-952c-49e3-867b-3b25ab28b719-1585836119746",
+		"id": "de926131-88d8-48e5-8acf-0e42e43b1355-1586160519386",
 		"entityType": "bundle"
 	},
 	"payload": {
@@ -38,16 +38,20 @@
 			},
 			"payload": {
 				"viz": [{
-					"id": "infopulse.cv.infopulse-cvapp-ui-0-1585838707879",
+					"id": "infopulse.cv.infopulse-cvapp-ui-0-1586160543241",
 					"appId": "infopulse.cv.infopulse-cvapp-ui",
 					"vizId": "InfopulseCV-display"
+				}, {
+					"id": "test.test-1-1586172400714",
+					"appId": "test.test",
+					"vizId": "test-display"
 				}]
 			}
 		}],
 		"sites": [{
 			"_version": "3.0.0",
 			"identification": {
-				"id": "0774e22f-2165-4a94-8cb5-9ff5e73e8f9f-1585836119746",
+				"id": "b5ea6249-c8a5-49d7-816c-501a0815260a-1586160519386",
 				"entityType": "site",
 				"title": "SAP Fiori launchpad site on Cloud Foundry",
 				"description": "SAP Fiori launchpad site on Cloud Foundry, deployed from SAP Web IDE"

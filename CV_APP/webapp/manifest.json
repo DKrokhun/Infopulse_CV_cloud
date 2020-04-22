@@ -14,7 +14,9 @@
 				"uri": "/sap/opu/odata/sap/ZUI_C_DATA_CV/",
 				"type": "OData",
 				"settings": {
-					"annotations": ["ZUI_C_DATA_CV_VAN"],
+					"annotations": [
+						"ZUI_C_DATA_CV_VAN"
+					],
 					"localUri": "localService/metadata.xml"
 				}
 			},
@@ -98,6 +100,10 @@
 				"settings": {
 					"defaultBindingMode": "TwoWay"
 				}
+			},
+			"@i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
 			}
 		},
 		"services": {
@@ -114,17 +120,24 @@
 				"controlAggregation": "pages",
 				"async": true
 			},
-			"routes": [{
-				"pattern": "",
-				"name": "employeelist",
-				"target": ["employeelist"]
-			}, {
-				"name": "employee",
-				"pattern": "employee/{id}",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["employee"]
-			}],
+			"routes": [
+				{
+					"pattern": "",
+					"name": "employeelist",
+					"target": [
+						"employeelist"
+					]
+				},
+				{
+					"name": "employee",
+					"pattern": "employee/{id}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"employee"
+					]
+				}
+			],
 			"targets": {
 				"employeelist": {
 					"viewName": "EmployeeList",

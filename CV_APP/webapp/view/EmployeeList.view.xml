@@ -37,6 +37,7 @@
                                         <core:Item key="SAP" text="{i18n>manageResumes.filterBar.department.SAP}"/>
                                         <core:Item key="SAP BG" text="{i18n>manageResumes.filterBar.department.SAPBG}"/>
                                         <core:Item key="PMO" text="{i18n>manageResumes.filterBar.department.PMO}"/>
+                                        <core:Item key="Aviation" text="Aviation"/>
                                     </Select>
                                 </fb:control>
                             </fb:FilterItem>

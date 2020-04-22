@@ -25,11 +25,24 @@ modules:
         - name: CV_APP
           artifacts:
             - './*'
-          target-path: resources/CV_APP          
-          
-  - name: FLP_site_module
+          target-path: resources/CV_APP
+        - name: EmployeeListUpload
+          artifacts:
+            - './*'
+          target-path: resources/EmployeeListUpload
+  - name: CV_APP
+    type: html5
+    path: CV_APP
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+  - name: FLP
     type: com.sap.portal.content
-    path: FLP_site_module
+    path: FLP
     parameters:
       stack: cflinuxfs3
       memory: 128M
@@ -40,16 +53,17 @@ modules:
       - name: Infopulse_CV_html5_repo_host
       - name: Infopulse_CV_ui_deployer
   
-  - name: CV_APP
+  
+  - name: EmployeeListUpload
     type: html5
-    path: CV_APP
+    path: EmployeeListUpload
     build-parameters:
       builder: custom
       commands:
         - npm install
         - npm run build
       supported-platforms: []
-      build-result: dist      
+      build-result: dist
 resources:
   - name: Infopulse_CV_html5_repo_runtime
     parameters:
@@ -84,4 +98,14 @@ resources:
     parameters:
       service-plan: lite
       service: destination
+    type: org.cloudfoundry.managed-service
+  - name: portal_resources_Infopulse_CV_2
+    parameters:
+      service-plan: standard
+      service: portal
+    type: org.cloudfoundry.managed-service
+  - name: portal_resources_Infopulse_CV_3
+    parameters:
+      service-plan: standard
+      service: portal
     type: org.cloudfoundry.managed-service

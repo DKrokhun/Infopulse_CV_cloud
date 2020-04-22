@@ -56,9 +56,9 @@ sap.ui.define([
 
         onFilterSearch: function () {
             var aFilters = [
-                this.createFilterFromFilterBar("DEPARTMENT", this.getModel("filterModel").getProperty("/departmentFilter"), false),
-                this.createFilterFromFilterBar("CVSTATUS", this.getModel("filterModel").getProperty("/statusFilter"), false),
-                this.createFilterFromFilterBar("NAME", this.getModel("filterModel").getProperty("/searchFilter"), true)
+                this.createFilterFromFilterBar("department", this.getModel("filterModel").getProperty("/departmentFilter"), false),
+                this.createFilterFromFilterBar("cvstatus", this.getModel("filterModel").getProperty("/statusFilter"), false),
+                this.createFilterFromFilterBar("name", this.getModel("filterModel").getProperty("/searchFilter"), true)
             ];
             this.getEmployeeListItemsBinding().filter(aFilters);
         },
@@ -74,7 +74,7 @@ sap.ui.define([
                 path: sKey,
                 operator: sFilterOperator,
                 value1: sAllValue,
-                caseSensitive: false
+                caseSensitive: true
             });
         },
 

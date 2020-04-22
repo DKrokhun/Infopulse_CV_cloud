@@ -1,5 +1,5 @@
 {
-  "name": "infopulse-cvapp-ui",
+  "name": "EmployeeListUpload",
   "version": "0.0.1",
   "description": "",
   "devDependencies": {
@@ -13,5 +13,5 @@
     "dependencies": [
       "@sap/ui5-builder-webide-extension"
     ]
-  }  
+  }
 }

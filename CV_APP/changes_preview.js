@@ -75,7 +75,7 @@
 					// For MTA projects we need to take only changes which are relevant for the current HTML5 module.
 					// The paths in sap-ui-cachebuster-info.json for MTA don't start with "webapp/changes".
 					// Instead, they start with  <MTA-HTML5-MODULE-NAME>, e.g. <MTA-HTML5-MODULE-NAME>/webapp/changes/<change-file>
-					return sPath.startsWith("CV_APP2") && sPath.indexOf("webapp/changes/") > 0 && isValidChangeFileExt(sPath);
+					return sPath.startsWith("CV_APP") && sPath.indexOf("webapp/changes/") > 0 && isValidChangeFileExt(sPath);
 				}
 
 				//we are looking for only change files
