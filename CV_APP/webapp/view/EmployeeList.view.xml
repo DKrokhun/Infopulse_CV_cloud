@@ -82,6 +82,7 @@
                         group: true
                     }
                 }"
+                
                 updateFinished="onUpdateFinished"
                 mode="MultiSelect"
                 sticky="ColumnHeaders"
