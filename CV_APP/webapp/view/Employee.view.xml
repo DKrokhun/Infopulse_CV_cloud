@@ -21,7 +21,7 @@
 			<ObjectPageSection title="{i18n>manageResumes.employeePage.objectSelectionTitle}">
 				<subSections>
 					<ObjectPageSubSection>
-						<m:List items="{ path: '/FilesList/' , sorter: { path: 'updated', group : true, descending: true } }">
+						<m:List items="{ path: 'to_CVfile' , sorter: { path: 'updated', group : true, descending: true } }">
 							<m:headerToolbar>
 								<m:Toolbar>
 									<m:Title text="{i18n>manageResumes.employeePage.resumeTableTitle}"/>
