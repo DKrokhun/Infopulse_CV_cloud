@@ -54,12 +54,12 @@
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
 				<m:Button width="auto" visible="{= ${cvstatus}==='NeedToUpdate' || ${cvstatus}==='Complete'}"
-					text="{i18n>manageResumes.employeeTable.actionButton.sendEmail}"/>
-				<m:Button width="auto" visible="{= ${cvstatus}==='InProgress'}" text="{i18n>manageResumes.employeeTable.actionButton.repeatNotice}"/>
+					text="{i18n>manageResumes.employeeTable.actionButton.sendEmail}" press='onClick'/>
+				<m:Button width="auto" visible="{= ${cvstatus}==='InProgress'}" text="{i18n>manageResumes.employeeTable.actionButton.repeatNotice}" press='reSend'/>
 				<m:Button width="auto" type="Accept" visible="{= ${cvstatus}==='ForApproval' }"
-					text="{i18n>manageResumes.employeeTable.actionButton.accept}"/>
+					text="{i18n>manageResumes.employeeTable.actionButton.accept}" press='confirm'/>
 				<m:Button width="auto" type="Reject" visible="{= ${cvstatus}==='ForApproval' }"
-					text="{i18n>manageResumes.employeeTable.actionButton.reject}"/>
+					text="{i18n>manageResumes.employeeTable.actionButton.reject}" press='reject'/>
 			</m:OverflowToolbar>
 		</footer>
 	</ObjectPageLayout>
